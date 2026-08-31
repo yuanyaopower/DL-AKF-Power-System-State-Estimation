@@ -402,17 +402,24 @@ class Tester_QR():
                 :
             ]
 
-            rmse_u = torch.sqrt(
+            # Per-time-step RMSE over state variables, followed by
+            # averaging over all samples and prediction time steps.
+            rmse_u_all = torch.sqrt(
                 torch.mean(
-                    (U_true - U_pred) ** 2
+                    (U_true - U_pred) ** 2,
+                    dim=1
                 )
             )
 
-            rmse_th = torch.sqrt(
+            rmse_th_all = torch.sqrt(
                 torch.mean(
-                    (th_true - th_pred) ** 2
+                    (th_true - th_pred) ** 2,
+                    dim=1
                 )
             )
+
+            rmse_u = rmse_u_all.mean()
+            rmse_th = rmse_th_all.mean()
 
             print(
                 f'rmse_u = {rmse_u.item():.10f}, '
