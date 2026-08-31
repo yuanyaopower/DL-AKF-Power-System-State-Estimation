@@ -6,8 +6,7 @@ function [U_fil, th_fil, rmse_u_ekf, rmse_th_ekf] = ...
 % Inputs:
 %   U, theta, P, Qp
 %       Evaluation-period voltage magnitude, phase angle, active-power
-%       injection, and reactive-power injection trajectories. The first
-%       96 samples are used as the warm-up/history interval.
+%       injection, and reactive-power injection trajectories.
 %
 %   case_id
 %       1 - stationary Gaussian noise
